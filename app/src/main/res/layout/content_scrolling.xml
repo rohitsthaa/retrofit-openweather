@@ -6,17 +6,47 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_scrolling" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context=".ScrollingActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/retrofit"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin" android:text="Replacing it with cloud data" />
-    <TextView
-        android:id="@+id/place"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin" android:text="Replacing it with place" />
-</LinearLayout>
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="40dp"
+        >
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
 
-</android.support.v4.widget.NestedScrollView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="100dp"
+            android:id="@+id/weather_icon"/>
+        <TextView
+            android:id="@+id/place"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin" android:text="Replacing it with cloud data"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:id="@+id/weather_report"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin" android:text="Replacing it with place"
+            android:layout_below="@+id/place"
+            android:layout_alignParentRight="true"/>
+        <TextView
+            android:id="@+id/country"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:textSize="40dp"
+            android:layout_below="@+id/weather_report"
+
+            />
+
+    </RelativeLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
