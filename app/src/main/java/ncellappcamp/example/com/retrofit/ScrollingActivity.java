@@ -43,7 +43,7 @@ public class ScrollingActivity extends AppCompatActivity {
     private String place_location="";
     private ProgressBar spinner;
 
-    TextView weather_report,place,weather_icon,country;
+    TextView weather_report,place,weather_icon,country,icon_text;
     List myList ;
     String API_KEY="bd82977b86bf27fb59a04b61b657fb6f";
     private final static String PATH_TO_WEATHER_FONT = "fonts/weather.ttf";
@@ -61,9 +61,11 @@ public class ScrollingActivity extends AppCompatActivity {
             spinner.setVisibility(View.VISIBLE);
 
         weather_icon=(TextView)findViewById(R.id.weather_icon);
+
             country=(TextView)findViewById(R.id.country);
         weatherFont = Typeface.createFromAsset(getAssets(), PATH_TO_WEATHER_FONT);
         weather_icon.setTypeface(weatherFont);
+
 
 
 
@@ -95,10 +97,13 @@ public class ScrollingActivity extends AppCompatActivity {
 
             }
         });
+            String[] codeLearnChapters = new String[] { "Android Introduction","Android Setup/Installation","Android Hello World","Android Layouts/Viewgroups","Android Activity & Lifecycle","Intents in Android"};
+            ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, codeLearnChapters);
 
 
-                APIManager.getApiService().getWeatherInfo("27.6988910",
-                        "84.430396084",
+
+                APIManager.getApiService().getWeatherInfo("55.5",
+                        "37.5",
                         "10",
                         API_KEY,
                         callback);
@@ -177,6 +182,21 @@ public class ScrollingActivity extends AppCompatActivity {
 
 
             }
+            String[]humidity = new String[10];
+            String[]rain_description=new String[10];
+            String[]icon=new String[10];
+            String[]time=new String[10];
+            for (int i=0; i<response.getList().size();i++){
+                humidity[i] = String.valueOf(response.getList().get(i).getMain().getHumidity());
+                rain_description[i] = String.valueOf(response.getList().get(i).getWeather().get(0).getDescription());
+                icon[i] = String.valueOf(response.getList().get(i).getWeather().get(0).getIcon());
+                time[i] = String.valueOf(response.getList().get(i).getDt());
+                Log.w("pre" ,time[i]);
+
+            }
+
+            ListView codeLearnLessons = (ListView)findViewById(R.id.list);
+            codeLearnLessons.setAdapter(new CustomAdapter(ScrollingActivity.this,humidity,rain_description,icon,time,weatherFont));
 
             spinner.setVisibility(View.GONE);
 
@@ -188,7 +208,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
             place.setText("Unable to retrieve data");
 
-
+            spinner.setVisibility(View.GONE);
 
 
             Log.d("", "failure", error);
