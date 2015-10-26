@@ -1,5 +1,5 @@
 # retrofit-openweather
-[Visit My Blog For Tutorial!](htttp://wwww.shrestharohit.com.np/blog/retrofit-openweather-api-android/)
+[Visit My Blog For Tutorial!](http://wwww.shrestharohit.com.np/blog/retrofit-openweather-api-android/)
 
 ![screenshot](https://github.com/rohitsthaa/retrofit-openweather/blob/master/device-2015-10-25-025059.png)
 
