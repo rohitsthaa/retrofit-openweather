@@ -45,7 +45,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     TextView weather_report,place,weather_icon,country,icon_text;
     List myList ;
-    String API_KEY="bd82977b86bf27fb59a04b61b657fb6f";
+    String API_KEY=""; //insert api key here
     private final static String PATH_TO_WEATHER_FONT = "fonts/weather.ttf";
     private ListView lv;
 
