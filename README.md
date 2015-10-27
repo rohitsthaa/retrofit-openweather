@@ -16,3 +16,9 @@ You can change  you latitude and longitude at
                         "10",
                         API_KEY,
                         callback);
+                        
+#License
+Copyright 2015 Rohit Shrestha
+The MIT License is a permissive license that is short and to the point. It lets people do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
+See LICENSE file for details.
+[LICENSE!](https://github.com/rohitsthaa/retrofit-openweather/blob/master/%20LICENSE.txt)
