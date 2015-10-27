@@ -1,4 +1,5 @@
 # retrofit-openweather
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-retrofit--openweather-green.svg?style=flat)](https://android-arsenal.com/details/3/2692)
 [Visit My Blog For Tutorial!](http://www.shrestharohit.com.np/blog/retrofit-openweather-api-android/)
 
 ![screenshot](https://github.com/rohitsthaa/retrofit-openweather/blob/master/device-2015-10-25-025059.png)
