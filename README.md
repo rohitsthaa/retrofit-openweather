@@ -13,13 +13,12 @@ This is a simple app that uses retrofit to parse the json data received from ope
 Add your API KEY to String API_KEY="";
 
 ##Change Latitude & Longitude
-You can change  you latitude and longitude at 
+~~You can change  you latitude and longitude at 
  APIManager.getApiService().getWeatherInfo("27.6988910",
                         "84.430396084",
                         "10",
                         API_KEY,
-                        callback);
-                        
+                        callback);~~                        
 #License
 Copyright 2015 Rohit Shrestha
 The MIT License is a permissive license that is short and to the point. It lets people do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
