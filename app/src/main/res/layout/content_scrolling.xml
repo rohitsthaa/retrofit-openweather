@@ -24,7 +24,7 @@
             <TextView
                 android:id="@+id/country"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_margin="@dimen/text_margin"
+
                 android:textSize="20dp"
                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
@@ -36,7 +36,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/country"
-            android:textSize="100dp"
+            android:textSize="80dp"
 
             android:id="@+id/weather_icon"/>
         <TextView
@@ -54,18 +54,15 @@
             android:layout_alignParentLeft="true"
             />
 
-
-
-
-
         </RelativeLayout>
-        <ListView
-            android:id="@+id/list"
-            android:layout_height="500dp"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_id"
+            android:scrollbars="vertical"
             android:layout_width="match_parent"
-            >
+            android:layout_height="600dp"
+            />
 
-        </ListView>
+
 
 
     </LinearLayout>

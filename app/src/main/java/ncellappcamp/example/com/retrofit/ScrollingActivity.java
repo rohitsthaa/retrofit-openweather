@@ -1,32 +1,25 @@
 package ncellappcamp.example.com.retrofit;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.Typeface;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import android.os.Handler;
+import java.util.List;
 
-import ncellappcamp.example.com.retrofit.Model.List;
+
 import ncellappcamp.example.com.retrofit.Model.WeatherData;
 import ncellappcamp.example.com.retrofit.Service.APIManager;
 import retrofit.Callback;
@@ -34,10 +27,15 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 
+
+
 public class ScrollingActivity extends AppCompatActivity {
+
     private static final String TAG = "SPLASH";
 
-
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
 
     private Typeface weatherFont;
     private String place_location="";
@@ -48,6 +46,9 @@ public class ScrollingActivity extends AppCompatActivity {
     String API_KEY="bd82977b86bf27fb59a04b61b657fb6f"; //insert api key here
     private final static String PATH_TO_WEATHER_FONT = "fonts/weather.ttf";
     private ListView lv;
+
+
+
 
 
 
@@ -66,6 +67,19 @@ public class ScrollingActivity extends AppCompatActivity {
         weatherFont = Typeface.createFromAsset(getAssets(), PATH_TO_WEATHER_FONT);
         weather_icon.setTypeface(weatherFont);
 
+
+
+
+
+            mRecyclerView = (RecyclerView) findViewById(R.id.recycler_id);
+
+            // use this setting to improve performance if you know that changes
+            // in content do not change the layout size of the RecyclerView
+            mRecyclerView.setHasFixedSize(true);
+
+            // use a linear layout manager
+            mLayoutManager = new LinearLayoutManager(this);
+            mRecyclerView.setLayoutManager(mLayoutManager);
 
 
 
@@ -101,8 +115,6 @@ public class ScrollingActivity extends AppCompatActivity {
             }
 
 
-        // Instanciating an array list (you don't need to do this,
-        // you already have yours).
 
 
 
@@ -152,6 +164,7 @@ public class ScrollingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
     private Callback<WeatherData> callback = new Callback<WeatherData>() {
+        public List<Weather> weathers;
         @Override
         public void success (WeatherData response, Response response2) {
 
@@ -214,17 +227,23 @@ public class ScrollingActivity extends AppCompatActivity {
             String[]rain_description=new String[10];
             String[]icon=new String[10];
             String[]time=new String[10];
+            weathers = new ArrayList<>();
             for (int i=0; i<response.getList().size();i++){
                 humidity[i] = String.valueOf(response.getList().get(i).getMain().getHumidity());
                 rain_description[i] = String.valueOf(response.getList().get(i).getWeather().get(0).getDescription());
                 icon[i] = String.valueOf(response.getList().get(i).getWeather().get(0).getIcon());
                 time[i] = String.valueOf(response.getList().get(i).getDt());
-                Log.w("pre" ,time[i]);
+
+                Log.w("humidity",humidity[i]);
+                Log.w("rain_description",rain_description[i]);
+                Log.w("icon",icon[i]);
+                Log.w("time",time[i]);
+
+                weathers.add(new Weather(String.valueOf(response.getList().get(i).getWeather().get(0).getIcon()), String.valueOf(response.getList().get(i).getMain().getHumidity()), String.valueOf(response.getList().get(i).getWeather().get(0).getDescription()), String.valueOf(response.getList().get(i).getDt())));
 
             }
-
-            ListView codeLearnLessons = (ListView)findViewById(R.id.list);
-            codeLearnLessons.setAdapter(new CustomAdapter(ScrollingActivity.this,humidity,rain_description,icon,time,weatherFont));
+            mAdapter = new WeatherAdapter(weathers,weatherFont);
+            mRecyclerView.setAdapter(mAdapter);
 
             spinner.setVisibility(View.GONE);
 
