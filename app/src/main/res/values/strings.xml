@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">retrofit</string>
+    <string name="cancel">cancelled</string>
+    <string name="GPSAlertDialogTitle">Gps alert</string>
+    <string name="GPSAlertDialogMessage">dialog message</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_splash">Splash</string>
     <string name="title_activity_bearing_display">BearingDisplay</string>

@@ -45,7 +45,7 @@ public class ScrollingActivity extends AppCompatActivity {
 
     TextView weather_report,place,weather_icon,country,icon_text;
     List myList ;
-    String API_KEY=""; //insert api key here
+    String API_KEY="bd82977b86bf27fb59a04b61b657fb6f"; //insert api key here
     private final static String PATH_TO_WEATHER_FONT = "fonts/weather.ttf";
     private ListView lv;
 
@@ -72,6 +72,34 @@ public class ScrollingActivity extends AppCompatActivity {
         weather_report = (TextView) findViewById(R.id.weather_report);
         place =(TextView)findViewById(R.id.place);
 
+            GPSTracker gpsTracker = new GPSTracker(this);
+
+            if (gpsTracker.getIsGPSTrackingEnabled())
+            {
+                String stringLatitude = String.valueOf(gpsTracker.latitude);
+                String stringLongitude = String.valueOf(gpsTracker.longitude);
+
+                APIManager.getApiService().getWeatherInfo(stringLatitude,
+                        stringLongitude,
+                        "10",
+                        API_KEY,
+                        callback);
+
+
+                String postalCode = gpsTracker.getPostalCode(this);
+
+                String addressLine = gpsTracker.getAddressLine(this);
+
+            }
+            else
+            {
+
+                // can't get location
+                // GPS or Network is not enabled
+                // Ask user to enable GPS/network in settings
+                gpsTracker.showSettingsAlert();
+            }
+
 
         // Instanciating an array list (you don't need to do this,
         // you already have yours).
@@ -91,22 +119,16 @@ public class ScrollingActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "you are view weather of "+place_location, Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "you are view weather of " + place_location, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
 
             }
         });
-            String[] codeLearnChapters = new String[] { "Android Introduction","Android Setup/Installation","Android Hello World","Android Layouts/Viewgroups","Android Activity & Lifecycle","Intents in Android"};
-            ArrayAdapter<String> codeLearnArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, codeLearnChapters);
 
 
 
-                APIManager.getApiService().getWeatherInfo("55.5",
-                        "37.5",
-                        "10",
-                        API_KEY,
-                        callback);
+
     }
 
     @Override
@@ -150,6 +172,12 @@ public class ScrollingActivity extends AppCompatActivity {
                     break;
                 case "03d":
                     weather_icon.setText(R.string.wi_cloud_down);
+                    break;
+                case "04d":
+                    weather_icon.setText(R.string.wi_cloudy);
+                    break;
+                case "04n":
+                    weather_icon.setText(R.string.wi_night_cloudy);
                     break;
                 case "10d":
                     weather_icon.setText(R.string.wi_day_rain_mix);

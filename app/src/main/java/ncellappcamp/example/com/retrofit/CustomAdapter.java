@@ -98,6 +98,12 @@ public class CustomAdapter extends BaseAdapter{
             case "01n":
                 holder.icon_text.setText(R.string.wi_night_clear);
                 break;
+            case "04d":
+                holder.icon_text.setText(R.string.wi_cloudy);
+                break;
+            case "04n":
+                holder.icon_text.setText(R.string.wi_night_cloudy);
+                break;
             case "02n":
                 holder.icon_text.setText(R.string.wi_night_cloudy);
                 break;
