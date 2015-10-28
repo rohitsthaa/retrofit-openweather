@@ -4,7 +4,7 @@
 
 [Visit My Blog For Tutorial!](http://www.shrestharohit.com.np/blog/retrofit-openweather-api-android/)
 
-![screenshot](https://github.com/rohitsthaa/retrofit-openweather/blob/master/device-2015-10-25-025059.png)
+![screenshot](https://github.com/rohitsthaa/retrofit-openweather/blob/master/device-2015-10-28-065350.png)
 
 
 This is a simple app that uses retrofit to parse the json data received from openweather API 
