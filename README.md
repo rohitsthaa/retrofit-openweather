@@ -18,7 +18,9 @@ Add your API KEY to String API_KEY="";
                         "84.430396084",
                         "10",
                         API_KEY,
-                        callback);~~                        
+                        callback);~~
+
+ Automatic GPS locator has been added                        
 #License
 Copyright 2015 Rohit Shrestha
 The MIT License is a permissive license that is short and to the point. It lets people do anything they want with your code as long as they provide attribution back to you and don’t hold you liable.
